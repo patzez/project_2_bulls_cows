@@ -10,7 +10,7 @@ import random
 
 
 def check_start_number(number):
-    if not number.startswith("0"):
+    if not str(number).startswith("0"):
         return True
     else:
         return False
@@ -24,12 +24,9 @@ def check_duplicate(number):
 
 
 def generate_number():
-    number = ""
     while True:
-        while len(number) != 4:
-            number += str(random.randint(0, 9))
-
-        if not check_start_number(number) and check_duplicate(number):
+        number = random.randint(1000, 9999)
+        if check_start_number(number) and check_duplicate(number):
             break
         else:
             continue
