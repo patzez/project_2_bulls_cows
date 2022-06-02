@@ -35,4 +35,5 @@ def generate_number():
             continue
     return number
 
+
 print(generate_number())
