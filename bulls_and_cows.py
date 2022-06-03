@@ -42,12 +42,22 @@ def generate_number() -> int:
 
 def input_number():
     while True:
-        number = input("Enter a number: ")
-        if number.isdecimal() and check_duplicate(number) and check_len(number) and check_start_number(number):
-            break
+        number = input("Guess a number: ")
+        if number.isdecimal():
+            if not check_duplicate(number):
+                print("Numbers in your guess can't repeat. Try again.")
+                continue
+            if not check_len(number):
+                print("Your guess must be 4 digits long. Try again.")
+                continue
+            if not check_start_number(number):
+                print("Your guess can't start with 0. Try again.")
+                continue
         else:
-            print("Invalid input.")
+            print("Your guess must be 4-digit number with unique numbers and can't begin with 0!",
+                  "Try again.", sep="\n")
             continue
+        break
     return number
 
 
