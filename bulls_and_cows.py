@@ -40,10 +40,11 @@ def generate_number() -> int:
     return number
 
 
-def input_number():
+def input_number() -> int:
     while True:
         number = input("Guess a number: ")
         if number.isdecimal():
+            number = int(number)
             if not check_duplicate(number):
                 print("Numbers in your guess can't repeat. Try again.")
                 continue
@@ -58,9 +59,34 @@ def input_number():
                   "Try again.", sep="\n")
             continue
         break
-    return number
+    return int(number)
+
+
+def num_to_list(number: int) -> list:
+    return [int(i) for i in str(number)]
+
+
+def count_bulls_cows(generated: int, guess: int) -> tuple:
+    bulls = 0
+    cows = 0
+    generated_list = num_to_list(generated)
+    guess_list = num_to_list(guess)
+
+    for i, j in zip(generated_list, guess_list):
+        if j in generated_list:
+            if i == j:
+                bulls += 1
+            else:
+                cows += 1
+    return bulls, cows
 
 
 vyber = input_number()
-print(vyber)
-print(generate_number())
+generovane = generate_number()
+print(type(vyber),
+      num_to_list(vyber))
+print(type(generovane),
+      num_to_list(generovane))
+print(list(zip(num_to_list(vyber), num_to_list(generovane))))
+print(type(count_bulls_cows(generovane, vyber)),
+      count_bulls_cows(generovane, vyber))
