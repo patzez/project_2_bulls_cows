@@ -92,32 +92,40 @@ def num_of_tries() -> int:
     return int(tries)
 
 
-def play_bulls_and_cows():
+def play_again() -> bool:
     while True:
+        again = input("Play again? [y / n]: ")
+        if again == "y":
+            return True
+        elif again == "n":
+            return False
+        else:
+            print("Invalid imput!")
+            continue
+
+
+def play_bulls_and_cows():
+    again = True
+    while again:
         number = generate_number()
         tries = num_of_tries()
 
         while tries > 0:
+            print(number)
             guess = input_number()
             b_and_c = count_bulls_cows(number, guess)
-            print(f"{b_and_c[0]} bulls, {b_and_c[0]} cows")
+            print(f"{b_and_c[0]} bulls, {b_and_c[1]} cows",
+                  f"Remaining tries: {tries - 1}",
+                  sep="\n")
 
             if b_and_c[0] == 4:
                 print("You guessed right!")
                 break
 
             tries -= 1
+        again = play_again()
 
-        again = input("Play again? [y / n]")
-
-        if again == "y":
-            continue
-        elif again == "n":
-            break
-        else:
-            print("Invalid imput!")
-
-
+play_bulls_and_cows()
 
 
 
