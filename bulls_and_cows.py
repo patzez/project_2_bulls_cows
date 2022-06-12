@@ -105,24 +105,38 @@ def play_again() -> bool:
 
 
 def play_bulls_and_cows():
+    separator = "-" * 25
     again = True
     while again:
         number = generate_number()
         tries = num_of_tries()
+        print(number)
 
         while tries > 0:
-            print(number)
             guess = input_number()
             b_and_c = count_bulls_cows(number, guess)
-            print(f"{b_and_c[0]} bulls, {b_and_c[1]} cows",
-                  f"Remaining tries: {tries - 1}",
+            print(separator,
+                  f"{b_and_c[0]} bulls, {b_and_c[1]} cows",
                   sep="\n")
 
             if b_and_c[0] == 4:
-                print("You guessed right!")
+                print(separator,
+                      "You guessed right!",
+                      f"The number was: {number}",
+                      separator,
+                      sep="\n")
                 break
 
             tries -= 1
+            print(f"Remaining tries: {tries}",
+                  separator,
+                  sep="\n")
+        else:
+            print("You ran out of tries!",
+                  "You have lost! :(",
+                  separator,
+                  sep="\n")
+
         again = play_again()
 
 play_bulls_and_cows()
