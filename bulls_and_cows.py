@@ -122,7 +122,7 @@ def play_bulls_and_cows():
     while again:
         number = generate_number()
         tries = num_of_tries()
-        print(number)
+        print(separator)
 
         while tries > 0:
             guess = input_number()
