@@ -78,7 +78,7 @@ def input_number() -> int:
         else:
             print(separator,
                   "Your guess must be 4-digit number, ",
-                  "with unique numbers ",
+                  "with unique numbers, ",
                   "that can't begin with 0!",
                   "Try again.",
                   separator, sep="\n")
