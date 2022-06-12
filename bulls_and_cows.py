@@ -16,26 +16,25 @@ def main():
           "I have generated a random",
           "4 digit number.",
           "Let's play bulls and cows!",
-          separator_double,
-          sep="\n")
+          separator_double, sep="\n")
     play_bulls_and_cows()
 
 
-def check_start_number(number: int) -> bool:
+def check_start_number(number) -> bool:
     if not str(number).startswith("0"):
         return True
     else:
         return False
 
 
-def check_duplicate(number: int) -> bool:
+def check_duplicate(number) -> bool:
     if len(list(str(number))) == len(set(str(number))):
         return True
     else:
         return False
 
 
-def check_len(number: int) -> bool:
+def check_len(number) -> bool:
     if len(str(number)) == 4:
         return True
     else:
@@ -53,22 +52,36 @@ def generate_number() -> int:
 
 
 def input_number() -> int:
+    separator = "-" * 25
     while True:
         number = input("Guess a number: ")
         if number.isdecimal():
-            number = int(number)
+            number = str(number)
             if not check_duplicate(number):
-                print("Numbers in your guess can't repeat. Try again.")
+                print(separator,
+                      "Numbers in your guess can't repeat.",
+                      "Try again.",
+                      separator, sep="\n")
                 continue
             if not check_len(number):
-                print("Your guess must be 4 digits long. Try again.")
+                print(separator,
+                      "Your guess must be 4 digits long.",
+                      "Try again.",
+                      separator, sep="\n")
                 continue
             if not check_start_number(number):
-                print("Your guess can't start with 0. Try again.")
+                print(separator,
+                      "Your guess can't start with 0.",
+                      "Try again.",
+                      separator, sep="\n")
                 continue
         else:
-            print("Your guess must be 4-digit number with unique numbers and can't begin with 0!",
-                  "Try again.", sep="\n")
+            print(separator,
+                  "Your guess must be 4-digit number, ",
+                  "with unique numbers ",
+                  "that can't begin with 0!",
+                  "Try again.",
+                  separator, sep="\n")
             continue
         break
     return int(number)
@@ -99,7 +112,9 @@ def num_of_tries() -> int:
         if tries.isnumeric() and int(tries) > 0:
             break
         else:
-            print("Number of tries must be a whole number greater than 0!")
+            print("Number of tries must be",
+                  "a whole number greater than 0!",
+                  sep="\n")
             continue
     return int(tries)
 
@@ -135,19 +150,17 @@ def play_bulls_and_cows():
                 print(separator,
                       "You guessed right!",
                       f"The number was: {number}",
-                      separator,
-                      sep="\n")
+                      separator, sep="\n")
                 break
 
             tries -= 1
             print(f"Remaining tries: {tries}",
-                  separator,
-                  sep="\n")
+                  separator, sep="\n")
         else:
             print("You ran out of tries!",
+                  f"The number was: {number}",
                   "You have lost! :(",
-                  separator,
-                  sep="\n")
+                  separator, sep="\n")
 
         again = play_again()
 
