@@ -9,6 +9,18 @@ discord: patzez#8128
 import random
 
 
+def main():
+    separator_double = "=" * 25
+    print(separator_double,
+          "Hello!",
+          "I have generated a random",
+          "4 digit number.",
+          "Let's play bulls and cows!",
+          separator_double,
+          sep="\n")
+    play_bulls_and_cows()
+
+
 def check_start_number(number: int) -> bool:
     if not str(number).startswith("0"):
         return True
@@ -139,20 +151,6 @@ def play_bulls_and_cows():
 
         again = play_again()
 
-play_bulls_and_cows()
 
-
-
-
-
-
-
-# vyber = input_number()
-# generovane = generate_number()
-# print(type(vyber),
-#       num_to_list(vyber))
-# print(type(generovane),
-#       num_to_list(generovane))
-# print(list(zip(num_to_list(vyber), num_to_list(generovane))))
-# print(type(count_bulls_cows(generovane, vyber)),
-#       count_bulls_cows(generovane, vyber))
+if __name__ == "__main__":
+    main()
